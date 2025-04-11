@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html lang="it">
 
 <head>
@@ -340,17 +343,36 @@
                 </div>
 
                 <!-- Bottoni Auth in alto a destra -->
-                <form action="register.php" class="absolute top-8 right-40 z-30 flex gap-4">
-                    <input type="submit" value="registrati" class="px-8 py-3 rounded-full bg-purple-600/80 backdrop-blur-sm border-2 border-white/20 
-                      text-white font-semibold hover:bg-purple-600 transition-all duration-300
-                      hover:scale-105 shadow-lg">
-                </form>
+                <?php if (!isset($_SESSION['user_id'])): ?>
+                    <!-- Utente non loggato: mostra login e registrazione -->
+                    <form action="register.php" class="absolute top-8 right-40 z-30 flex gap-4">
+                        <input type="submit" value="registrati" class="px-8 py-3 rounded-full bg-purple-600/80 backdrop-blur-sm border-2 border-white/20 
+                          text-white font-semibold hover:bg-purple-600 transition-all duration-300
+                          hover:scale-105 shadow-lg">
+                    </form>
 
-                <form action="login.php" class="absolute top-8 right-8 z-30 flex gap-4">
-                    <input type="submit" value="login" class="px-8 py-3 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 
-                      text-white font-semibold hover:bg-white/20 transition-all duration-300
-                      hover:scale-105 shadow-lg">
-                </form>
+                    <form action="login.php" class="absolute top-8 right-8 z-30 flex gap-4">
+                        <input type="submit" value="login" class="px-8 py-3 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 
+                          text-white font-semibold hover:bg-white/20 transition-all duration-300
+                          hover:scale-105 shadow-lg">
+                    </form>
+                <?php else: ?>
+                    <!-- Utente loggato: mostra profilo e logout -->
+                    <div class="absolute top-8 right-8 z-30 flex gap-4">
+                        <a href="profile.php" class="px-8 py-3 rounded-full bg-purple-600/80 backdrop-blur-sm border-2 border-white/20 
+                          text-white font-semibold hover:bg-purple-600 transition-all duration-300
+                          hover:scale-105 shadow-lg flex items-center">
+                            <img src="assets/user.svg" alt="profilo" class="w-5 h-5 mr-2">
+                            Profilo
+                        </a>
+                        
+                        <a href="backend/logout.php" class="px-8 py-3 rounded-full bg-white/10 backdrop-blur-sm border-2 border-white/20 
+                          text-white font-semibold hover:bg-white/20 transition-all duration-300
+                          hover:scale-105 shadow-lg">
+                            Logout
+                        </a>
+                    </div>
+                <?php endif; ?>
 
 
 

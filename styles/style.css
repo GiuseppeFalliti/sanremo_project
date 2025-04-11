@@ -55,6 +55,4 @@
      filter: drop-shadow(0 0 15px #b100e8);
 }
 
-.play-button:active {
-  transform: scale(0.95);
-}
+

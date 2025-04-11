@@ -25,10 +25,10 @@
                     </div>
                 <?php endif; ?>
 
-                <form action="/backend/login.php" method="POST" class="space-y-6">
+                <form action="backend/login.php" method="POST" class="space-y-6">
                     <div>
                         <label class="text-white/80 block mb-2">Username</label>
-                        <input type="text" name="login" 
+                        <input type="text" name="username" 
                             class="w-full px-4 py-3 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-lg
                                    text-white placeholder-white/50 focus:outline-none focus:border-purple-500">
                     </div>
