@@ -438,8 +438,8 @@ session_start();
    
     <!-- Script per la lista della NavBar -->
     <script>
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
+        const searchInput = document.getElementById('searchInput'); // Input della barra di ricerca
+        const searchResults = document.getElementById('searchResults'); // Risultati della barra di ricerca
 
 
         // funzione per creare gli elementi dei risultati  della barra di ricerca 
@@ -486,14 +486,14 @@ session_start();
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
-                const data = await response.json();
+                const data = await response.json(); // Risposta JSON dalla API
                 console.log('API Response:', data); // Debug
 
                 if (!data.success) {
                     throw new Error(data.error || 'Errore nella ricerca');
                 }
 
-                return data.results;
+                return data.results; // Risultati della ricerca
             } catch (error) {
                 console.error('Errore nella ricerca:', error);
                 return [];
@@ -511,9 +511,10 @@ session_start();
             };
         }
 
+        // Funzione per gestire la ricerca
         const handleSearch = debounce(async (e) => {
-            const query = e.target.value.trim();
-
+            const query = e.target.value.trim(); // Query della ricerca
+            
             if (query.length < 2) {
                 searchResults.classList.add('hidden');
                 return;
@@ -521,12 +522,13 @@ session_start();
 
             try {
                 const results = await fetchSearchResults(query);
-                const resultsContainer = searchResults.querySelector('.p-4');
-                resultsContainer.innerHTML = '';
+                const resultsContainer = searchResults.querySelector('.p-4'); // Contenitore dei risultati
+                resultsContainer.innerHTML = ''; // Pulizia dei risultati precedenti
 
                 if (!results || results.length === 0) {
                     resultsContainer.innerHTML = '<p class="text-black text-center">Nessun risultato trovato</p>';
                 } else {
+                    
                     results.forEach(result => {
                         if (result) { // Controllo aggiuntivo
                             resultsContainer.appendChild(createResultItem(result));
